@@ -46,15 +46,16 @@ public class HashMethodesTest {
     public void testHash3() {
         System.out.println("hash3");
         HashMethodes instance = new HashMethodesImpl();
-        //assertEquals(1776004908, instance.hash3("Bonjour"));
+        //assertEquals(499619717, instance.hash3(8));
         //assertEquals(0, instance.hash3(0));
         ArrayList<Integer> a = new ArrayList<Integer>();
-        for (int i = -1000; i < 100000; i++) {
+        for (int i = 0; i < 100000; i++) {
             if (a.contains(instance.hash3(i))){
-                System.out.println("HashMethodesTest.testHash1()");
+                System.out.println(i);
             }
             else {
-                a.add(instance.hash3(i));
+                //System.out.println(i);
+                a.add(instance.hash3(i+" "+instance.hash3(i)));
             }
         }
     }
@@ -66,18 +67,18 @@ public class HashMethodesTest {
     public void testHash4() {
         System.out.println("hash4");
         HashMethodes instance = new HashMethodesImpl();
-        //assertEquals(1285996592, instance.hash4("Bonjour"));
+        assertEquals(231541446, instance.hash4("Bonjour"));
         //assertEquals(321725712, instance.hash4(0));
-        ArrayList<Integer> a = new ArrayList<Integer>();
+        /*ArrayList<Integer> a = new ArrayList<>();
         
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 1000; i++) {
             if (a.contains(instance.hash4(i))){
-                //System.out.println(i);
+                System.out.println("collision "+instance.hash4(i));
             }
             else {
                 a.add(instance.hash4(i));
             }
-        }
+        }*/
     }
 
     public class HashMethodesImpl extends HashMethodes {

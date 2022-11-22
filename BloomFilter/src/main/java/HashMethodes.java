@@ -21,23 +21,24 @@ public abstract class HashMethodes{
     }
     
     public int hash3(Object o){
-        return abs(o.toString().length()+569875143*575654756*o.hashCode());
+        int hash = 0;
+        String s = o.toString();
+        for (int i = 0; i<s.length(); i++) {
+            hash += s.codePointAt(i);
+        }
+        return abs(hash);
     }
     
     public int hash4(Object o){
-        Integer hash = 0;
+        String hash = "";
+        int tmp;
         String s = o.toString();
         for (int i = 0; i<s.length(); i++) {
-            hash += (s.charAt(i)*1000*(i+1));
+            hash += "" + abs((s.codePointAt(i)-48));
+            tmp = Integer.parseInt(hash)%10000000;
+            hash = "" + tmp;
+            System.out.println(hash);
         }
-        System.out.println(hash);
-        hash *= o.toString().length()*546984697;
-        String h = hash.toString();
-        for(char c : h.toCharArray()){
-            if (c%2 != 0){
-                hash *= 13;
-            }
-        }
-        return abs(hash+42457*95693215);
+        return abs(Integer.parseInt(hash)%10000000);
     }    
 }
