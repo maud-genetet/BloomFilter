@@ -10,7 +10,7 @@ import java.util.ArrayList;
  *
  * @author maud
  */
-public class ArrayListFilter extends ListFilter{
+public class ArrayListFilter extends ListGenericFilter{
     
     public ArrayListFilter(int k, int m) {
         super(k, m, new ArrayList<Boolean>());

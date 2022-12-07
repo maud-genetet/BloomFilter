@@ -10,7 +10,7 @@ import java.util.LinkedList;
  *
  * @author maud
  */
-public class LinkedListFilter extends ListFilter{
+public class LinkedListFilter extends ListGenericFilter{
     
     public LinkedListFilter(int k, int m) {
         super(k, m, new LinkedList<>());

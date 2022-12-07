@@ -7,11 +7,12 @@
  *
  * @author maud
  */
-public abstract class BloomFilter extends HashMethodes{
+public abstract class BloomFilter{
     
     protected int k;
     protected int m; 
     protected int n;
+    protected HashMethodes myHash;
     
     public BloomFilter(int k, int m) {
         if ( k < 1 ){
@@ -21,6 +22,7 @@ public abstract class BloomFilter extends HashMethodes{
         }
         this.k = k;
         this.m = m;
+        this.myHash = new HashMethodes(m);
     }
     
     public abstract void addAObject(Object o);

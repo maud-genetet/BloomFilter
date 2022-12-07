@@ -10,23 +10,39 @@ import static java.lang.Math.abs;
  *
  * @author maud
  */
-public abstract class HashMethodes{
+public class HashMethodes{
+    
+    int tailleTab;
+    
+    public HashMethodes(int m){
+        this.tailleTab = m;
+    }
+    
+    /*
+    * HashCode de base avec juste modulo de la taille du tableau en plus
+    * 
+    */
+    public int hash0(Object o){
+        return o.hashCode()%this.tailleTab;
+    }
 
     public int hash1(Object o){
-        return abs(o.hashCode()+1526*1989679617%95647853);
+        return abs(o.hashCode()*3%this.tailleTab);
     }
     
     public int hash2(Object o){
-        return abs(o.toString().hashCode());
-    }
-    
-    public int hash3(Object o){
+        /*
         int hash = 0;
         String s = o.toString();
         for (int i = 0; i<s.length(); i++) {
             hash += s.codePointAt(i);
         }
-        return abs(hash);
+        */
+        return abs(o.hashCode()*7%this.tailleTab);
+    }
+    
+    public int hash3(Object o){
+        return abs(o.hashCode()*13%this.tailleTab);
     }
     
     public int hash4(Object o){
@@ -34,11 +50,8 @@ public abstract class HashMethodes{
         int tmp;
         String s = o.toString();
         for (int i = 0; i<s.length(); i++) {
-            hash += "" + abs((s.codePointAt(i)-48));
-            tmp = Integer.parseInt(hash)%10000000;
-            hash = "" + tmp;
-            System.out.println(hash);
+            hash += "" + Integer.parseInt(""+abs(s.codePointAt(i)));
         }
-        return abs(Integer.parseInt(hash)%10000000);
+        return abs(o.hashCode()*17%this.tailleTab);
     }    
 }

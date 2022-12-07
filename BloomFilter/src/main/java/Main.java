@@ -7,12 +7,23 @@
  *
  * @author maud
  */
-public class Main extends ToolsForStatistics {
+public class Main {
     
     public static void main(String[] args) {
-               
+        
+        
+        int nbElement = 5000;
+        
+        Benchmark bench = new Benchmark(nbElement);
+        
+        bench.timeCalculationM();
+        
+         /*
+        // nombre de filtre
         int k = 1;
+        // taille du tableau
         int m = 10000;
+        // nombre d'élements dans le tableau
         int n = 5000;
         
         // Création de différents type de filtre avec les mêmes propriétés
@@ -34,16 +45,19 @@ public class Main extends ToolsForStatistics {
         
         // Appel de la fonction qui test si c'est élements sont là 
         // et qui retourne le temps que cela met
-        timeCalculation(fT,elementsTest);
-        timeCalculation(fA, elementsTest);
-        timeCalculation(fL, elementsTest);
+        Benchmark bench = new Benchmark();
         
-   
+        bench.timeCalculation(fT,elementsTest);
+        bench.timeCalculation(fA, elementsTest);
+        bench.timeCalculation(fL, elementsTest);
+        
+        System.out.println("");
         
         
         // Pour chaque k de 1 à 5 regarde le pourcentage d'erreur
         for (int i = 0; i < 5; i++) {
-            mBasedErrorTest(1000, i);
-        }
+            bench.mBasedErrorTest(1000, i);
+            System.out.println("");
+        }*/
     }
 }

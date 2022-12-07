@@ -1,8 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: HashMethodesTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.018 s <<< FAILURE! - in HashMethodesTest
-testHash4  Time elapsed: 0.015 s  <<< FAILURE!
-org.opentest4j.AssertionFailedError: expected: <231541446> but was: <8636966>
-	at HashMethodesTest.testHash4(HashMethodesTest.java:70)
-
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.021 s - in HashMethodesTest

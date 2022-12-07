@@ -21,15 +21,15 @@ public class TabFilter extends BloomFilter{
 
     @Override
     public Boolean isInFilter(Object o) {
-        Boolean b = this.filterTab[o.hashCode()%super.m];
-        if ( 2 <= super.k ){
-            b = b && this.filterTab[hash1(o)%super.m];
-            if ( 3 <= super.k ){
-                b = b && this.filterTab[hash2(o)%super.m];
-                if ( 4 <= super.k ){
-                    b = b && this.filterTab[hash3(o)%super.m];
-                    if ( 5 <= super.k ){
-                        b = b && this.filterTab[hash4(o)%super.m];
+        Boolean b = this.filterTab[super.myHash.hash0(o)];
+        if ( 2 <= super.k && b){
+            b = b && this.filterTab[super.myHash.hash1(o)];
+            if ( 3 <= super.k && b){ 
+                b = b && this.filterTab[super.myHash.hash2(o)];
+                if ( 4 <= super.k && b){
+                    b = b && this.filterTab[super.myHash.hash3(o)];
+                    if ( 5 <= super.k && b){
+                        b = b && this.filterTab[super.myHash.hash4(o)];
                     }
                 }
             }
@@ -39,15 +39,15 @@ public class TabFilter extends BloomFilter{
 
     @Override
     public void addAObject(Object o) {
-        filterTab[o.hashCode()%super.m] = true;
+        filterTab[super.myHash.hash0(o)] = true;
         if ( 2 <= super.k ){
-            this.filterTab[hash1(o)%super.m] = true;
+            this.filterTab[super.myHash.hash1(o)] = true;
             if ( 3 <= super.k ){
-                this.filterTab[hash2(o)%super.m] = true;
+                this.filterTab[super.myHash.hash2(o)] = true;
                 if ( 4 <= super.k ){
-                    this.filterTab[hash3(o)%super.m] = true;
+                    this.filterTab[super.myHash.hash3(o)] = true;
                     if ( 5 <= super.k ){
-                        this.filterTab[hash4(o)%super.m] = true;
+                        this.filterTab[super.myHash.hash4(o)] = true;
                     }
                 }
             }

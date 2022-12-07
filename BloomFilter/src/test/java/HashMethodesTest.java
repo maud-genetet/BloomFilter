@@ -23,7 +23,7 @@ public class HashMethodesTest {
     @Test
     public void testHash1() {
         System.out.println("hash1");
-        HashMethodes instance = new HashMethodesImpl();
+        HashMethodes instance = new HashMethodes(100);
         //assertEquals(0, instance.hash1(0));
         
     }
@@ -34,7 +34,7 @@ public class HashMethodesTest {
     @Test
     public void testHash2() {
         System.out.println("hash2");
-        HashMethodes instance = new HashMethodesImpl();
+        HashMethodes instance = new HashMethodes(100);
         //assertEquals(7, instance.hash2(7));
         
     }
@@ -45,7 +45,7 @@ public class HashMethodesTest {
     @Test
     public void testHash3() {
         System.out.println("hash3");
-        HashMethodes instance = new HashMethodesImpl();
+        HashMethodes instance = new HashMethodes(1000);
         //assertEquals(499619717, instance.hash3(8));
         //assertEquals(0, instance.hash3(0));
         ArrayList<Integer> a = new ArrayList<Integer>();
@@ -66,7 +66,7 @@ public class HashMethodesTest {
     @Test
     public void testHash4() {
         System.out.println("hash4");
-        HashMethodes instance = new HashMethodesImpl();
+        HashMethodes instance = new HashMethodes(1000);
         assertEquals(231541446, instance.hash4("Bonjour"));
         //assertEquals(321725712, instance.hash4(0));
         /*ArrayList<Integer> a = new ArrayList<>();
@@ -80,8 +80,4 @@ public class HashMethodesTest {
             }
         }*/
     }
-
-    public class HashMethodesImpl extends HashMethodes {
-    }
-    
 }
