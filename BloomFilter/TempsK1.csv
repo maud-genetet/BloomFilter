@@ -1,0 +1,11 @@
+TailleM,DuréeArrayList(milisecondes),DuréeTab(milisecondes),DuréeLinkedList(milisecondes)
+10000,98,72,85
+20000,54,82,66
+30000,65,65,83
+40000,72,62,62
+50000,73,68,73
+60000,73,57,69
+70000,68,57,64
+80000,61,64,66
+90000,61,61,57
+100000,69,57,57

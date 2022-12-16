@@ -11,12 +11,48 @@ public class Main {
     
     public static void main(String[] args) {
         
+        Benchmark bench = new Benchmark();
+
+        /*
         
-        int nbElement = 5000;
+        int k = 1;
+        int m = 10000;
+        int n = 50000;
         
-        Benchmark bench = new Benchmark(nbElement);
+        // Création de différents type de filtre avec les mêmes propriétés
+        BloomFilter fT = new TabFilter(k,m);
+        BloomFilter fA = new ArrayListFilter(k,m);
+        BloomFilter fL = new LinkedListFilter(k, m);
+        for (int i = 0; i < n; i++) {
+            fT.addAObject(i);
+            fA.addAObject(i);
+            fL.addAObject(i);
+        }
         
-        bench.timeCalculationM();
+        // Création d'une liste d'éléments à tester pour le temps d'exécution
+        int nbExecution = 100000;
+        int[] elementsTest = new int[nbExecution];
+        for (int i = 0; i < nbExecution; i++) {
+            elementsTest[i] = ((int)(Math.random()*m*2));
+        }
+        
+        // Appel de la fonction qui test si c'est élements sont là 
+        // et qui retourne le temps que cela met
+        bench.timeCalculation(fT,elementsTest);
+        bench.timeCalculation(fA, elementsTest);
+        bench.timeCalculation(fL, elementsTest);
+        
+        
+        
+        
+        
+        
+        
+        
+        /**/
+        
+        
+        bench.timeCalculationBench(100000,1,10000000,10000);
         
          /*
         // nombre de filtre
