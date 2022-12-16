@@ -19,7 +19,7 @@ public class Benchmark {
     public Benchmark(){
     }
 
-    public void timeCalculationBench(int mTotal, int k, int nbExecution, int intervalle){
+    public void timeCalculationBench(int mMax, int k, int nbExecution, int intervalle){
 
         String DELIMITER = ",";
         String SEPARATOR = "\n";
@@ -28,27 +28,22 @@ public class Benchmark {
 
         try
         {
-          fileTemps = new FileWriter("TempsK"+k+".csv");
+          fileTemps = new FileWriter("TempsK"+k+"nbExec"+nbExecution+"enMillisecondes.csv");
           //Ajouter l'en-tête
           fileTemps.append(HEADER);
           
-          for(int m = 1; m <= mTotal/intervalle; m++){
+          for(int m = 1; m <= mMax/intervalle; m++){
               fileTemps.append(SEPARATOR);
               BloomFilter bA = new ArrayListFilter(m*intervalle,k);
               BloomFilter bT = new TabFilter(m*intervalle,k);
               BloomFilter bL = new LinkedListFilter(m*intervalle,k);
-              /*for(int n=0; n<m*intervalle/2; n++){
-                bA.addAObject(n);
-                bT.addAObject(n);
-                bL.addAObject(n);
-              }*/
-              /*
+             
               bA = ajoutElementsDansLeFiltre(bA);
               bT = ajoutElementsDansLeFiltre(bT);
               bL = ajoutElementsDansLeFiltre(bL);
-              */
+              
               int[] testList = creationBancDeTest(nbExecution, m*intervalle);
-              fileTemps.append(""+m*intervalle+DELIMITER+calculDuTemps(bA, testList)+
+              fileTemps.append(m*intervalle+DELIMITER+calculDuTemps(bA, testList)+
                       DELIMITER+calculDuTemps(bT, testList)+DELIMITER+calculDuTemps(bL, testList));
           }
           
@@ -60,81 +55,38 @@ public class Benchmark {
         }
     }
     
-    /*
-    public static void timeCalculation(BloomFilter bf, int[] test){
-        int nbExecution = test.length;
-        long startTime = System.currentTimeMillis();
-        for (int i = 0; i < nbExecution; i++) {
-            bf.isInFilter(test[i]);
-        }
-        long endTime = System.currentTimeMillis();
-        System.out.println("Total time elapsed for "+nbExecution+" execution for a "
-                +bf.toString()+ " with k = "+bf.k+" m = "+bf.m+" and n = "+bf.n+" is : "
-                + (endTime-startTime) + " millisecondes");
-    }
-    */
-    
-    public void mBasedErrorTest(int n, int k){
-        
-        int nbExecution = 100000;
+    public void ErrorBench(int mTotal, int nbExecution){
 
-        // Creation of benchmark
-        int nbError;
-        BloomFilter f;
+        String DELIMITER = ",";
+        String SEPARATOR = "\n";
+        String HEADER = "PourcentageNdansM,nbErrorK1,nbErrorK2,nbErrorK3,nbErrorK4,nbErrorK5";
+        FileWriter fileError;
 
-        for (int i = 1; i <= 10; i++) {
-            
-            int m = (int)(n*100/i);
-            f = new ArrayListFilter(k,m);
-            for (int a = 0; a < n; a++) {
-                f.addAObject(a);
-            }
-            
-            // Test 
-            nbError = 0;
-            for (int j = 0; j < nbExecution; j++) {
-                if (f.isInFilter((int)(Math.random()*(n*100-n+1)+n))){
-                    nbError ++;
-                }
-            }
-            System.out.println("With n = "+n+" "+i+"% of m, m = "+m+" and k = "+(k+1)
-                    +" we have a percentage of "+(nbError*100/nbExecution)+"% of errors");
+        try
+        {
+          fileError = new FileWriter("ErrorM"+mTotal+"nbExec"+nbExecution+"En%.csv");
+          //Ajouter l'en-tête
+          fileError.append(HEADER);
+          
+          int[] test = creationBancDeTest(nbExecution, (mTotal*100-mTotal+1)+mTotal);
+          for(int i=1; i<=100; i++){
+              fileError.append(SEPARATOR);
+              String s = ""+i;
+              for(int K = 1; K<=5; K++){
+                  BloomFilter bf = new ArrayListFilter(K,mTotal);
+                  bf = ajoutPourcentageElementsAleatoire(bf, i);
+                  s += DELIMITER+nbErrorCalcul(bf,test);
+              }
+              fileError.append(s);
+          }
+          
+          
+          fileError.close();
         }
-    }
-    
-    public void kBasedErrorTest(int n, int m){
-        
-        int nbExecution = 100000;
-
-        // Creation of benchmark
-        int nbError;
-        BloomFilter f;
-        
-        for (int k = 0; k < 5; k++) {
-            
-            f = new ArrayListFilter(k,m);
-            for (int a = 0; a < n; a++) {
-                f.addAObject(a);
-            }
-            
-            // Test 
-            nbError = 0;
-            for (int j = 0; j < nbExecution; j++) {
-                if (f.isInFilter((int)(Math.random()*(n*100-n+1)+n))){
-                    nbError ++;
-                }
-            }
-            System.out.println("With m = "+m +" n = "+n+" and k = "+k
-                    +" we have a percentage of "+(nbError*100/nbExecution)+"% of errors");
+        catch(Exception e)
+        {
+          e.printStackTrace();
         }
-    }
-    
-    private ArrayList<Integer> creationBancDeTest2(int nbExecution, int m){
-        ArrayList<Integer> testList = new ArrayList<>();
-        for(int i = 0; i<nbExecution; i++){
-            testList.add((int)(Math.random()*m));
-        }
-        return testList;
     }
     
     private int[] creationBancDeTest(int nbExecution, int m){
@@ -144,33 +96,39 @@ public class Benchmark {
         }
         return testList;
     }
-
-    private String calculDuTemps2(BloomFilter b, ArrayList<Integer> testList) {
-        for( int n = 0; n<b.m/2; n++){
-            b.addAObject(n);
-        }
-        long startTime = System.currentTimeMillis();
-        for(int i : testList){
-            b.isInFilter(i);
-        }
-        long endTime = System.currentTimeMillis();
-        return ""+(endTime-startTime);
-    }
     
     private BloomFilter ajoutElementsDansLeFiltre(BloomFilter bf){
-        /*for(int n=0; n<bf.m/2; n++){
+        for(int n=0; n<bf.m/2; n++){
             bf.addAObject(n);
-        }*/
+        }
         return bf;
     }
     
-    private String calculDuTemps(BloomFilter bf, int[] test){
+    private BloomFilter ajoutPourcentageElementsAleatoire(BloomFilter bf, int pourcentage){
+        for(int n=0; n<pourcentage; n++){
+            bf.addAObject(n);
+        }
+        return bf;
+    }
+    
+    private int calculDuTemps(BloomFilter bf, int[] test){
         int nbExecution = test.length;
         long startTime = System.currentTimeMillis();
         for (int i = 0; i < nbExecution; i++) {
             bf.isInFilter(test[i]);
         }
         long endTime = System.currentTimeMillis();
-        return (endTime-startTime)+"";
+        return (int)(endTime-startTime);
     }
+
+    private int nbErrorCalcul(BloomFilter bf, int[] test) {
+        int nbError = 0;
+        for(int i = 0; i<test.length; i++){
+            if (bf.isInFilter(test[i])){
+                nbError++;
+            }
+        }
+        return nbError/100;
+    }
+    
 }
