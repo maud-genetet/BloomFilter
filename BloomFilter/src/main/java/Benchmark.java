@@ -28,15 +28,15 @@ public class Benchmark {
 
         try
         {
-          fileTemps = new FileWriter("TempsK"+k+"nbExec"+nbExecution+"enMillisecondes.csv");
+          fileTemps = new FileWriter("TempsK"+k+"nbExec"+nbExecution+"mMax"+mMax+"intervalle+"+intervalle+"enMillisecondes.csv");
           //Ajouter l'en-tête
           fileTemps.append(HEADER);
           
           for(int m = 1; m <= mMax/intervalle; m++){
               fileTemps.append(SEPARATOR);
-              BloomFilter bA = new ArrayListFilter(m*intervalle,k);
-              BloomFilter bT = new TabFilter(m*intervalle,k);
-              BloomFilter bL = new LinkedListFilter(m*intervalle,k);
+              BloomFilter bA = new ArrayListFilter(k,m*intervalle);
+              BloomFilter bT = new TabFilter(k,m*intervalle);
+              BloomFilter bL = new LinkedListFilter(k,m*intervalle);
              
               bA = ajoutElementsDansLeFiltre(bA);
               bT = ajoutElementsDansLeFiltre(bT);

@@ -13,17 +13,16 @@ public class Main {
         
         Benchmark bench = new Benchmark();
 
-        int m = 1000;
+        int m = 10000;
         int k = 1;
-        int nbExecution = 10000000;
-        int intervalles = 1000;
+        int nbExecution = 100000;  //100000
+        int intervalles = 100;
         
         bench.timeCalculationBench(m,k,nbExecution,intervalles);
         
+        m = 100000;
         nbExecution = 10000000; // Mettre minimum 10000000 pour avoir de bon resultats
        
         bench.ErrorBench(m, nbExecution);
-
-        
     }
 }

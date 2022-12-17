@@ -31,13 +31,6 @@ public class HashMethodes{
     }
     
     public int hash2(Object o){
-        /*
-        int hash = 0;
-        String s = o.toString();
-        for (int i = 0; i<s.length(); i++) {
-            hash += s.codePointAt(i);
-        }
-        */
         return abs(o.hashCode()*7%this.tailleTab);
     }
     
@@ -46,12 +39,6 @@ public class HashMethodes{
     }
     
     public int hash4(Object o){
-        String hash = "";
-        int tmp;
-        String s = o.toString();
-        for (int i = 0; i<s.length(); i++) {
-            hash += "" + Integer.parseInt(""+abs(s.codePointAt(i)));
-        }
         return abs(o.hashCode()*17%this.tailleTab);
     }    
 }
