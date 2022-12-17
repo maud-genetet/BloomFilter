@@ -20,8 +20,8 @@ public class Main {
         
         bench.timeCalculationBench(m,k,nbExecution,intervalles);
         
-        m = 100000;
-        nbExecution = 10000000; // Mettre minimum 10000000 pour avoir de bon resultats
+        m = 10000; 
+        nbExecution = 10000; 
        
         bench.ErrorBench(m, nbExecution);
     }

@@ -12,12 +12,10 @@ import java.util.ArrayList;
  */
 public class ArrayListFilter extends ListGenericFilter{
     
+    /*
+    * Constructeur
+    */
     public ArrayListFilter(int k, int m) {
         super(k, m, new ArrayList<Boolean>());
-    }
-    
-    @Override
-    public String toString() {
-        return "ArrayList";
     }
 }

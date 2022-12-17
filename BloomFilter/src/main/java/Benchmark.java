@@ -16,9 +16,21 @@ import java.util.Set;
  */
 public class Benchmark {
         
+    /*
+    * Constructeur
+    */
     public Benchmark(){
     }
 
+    /**
+     * Benchemark du calcul du temps de chacun des types de filtre
+     * Retourne les valeurs trouvé dans un fichier .csv
+     * 
+     * @param mMax taille m max de filtre à benchmaker
+     * @param k nombre de hash utilisés
+     * @param nbExecution nombre d'éxécutions à chaque bench
+     * @param intervalle intevalle de m
+     */
     public void timeCalculationBench(int mMax, int k, int nbExecution, int intervalle){
 
         String DELIMITER = ",";
@@ -55,6 +67,13 @@ public class Benchmark {
         }
     }
     
+    /**
+     * Benchmark du calcul d'erreur 
+     * Retourne les valeur dans un fichier .csv
+     * 
+     * @param mTotal taille m max du filtre à tester
+     * @param nbExecution nombre d'executions à faire à chaque fois 
+     */
     public void ErrorBench(int mTotal, int nbExecution){
 
         String DELIMITER = ",";
@@ -89,6 +108,13 @@ public class Benchmark {
         }
     }
     
+    /**
+     * Crée un tableau d'éléments aléatoires compris entre 0 et m
+     * 
+     * @param nbExecution taille du tableau final
+     * @param m max possible pour un élément
+     * @return int[] tableau d'éléments
+     */
     private int[] creationBancDeTest(int nbExecution, int m){
         int[] testList = new int[nbExecution];
         for(int i = 0; i<nbExecution; i++){
@@ -97,6 +123,12 @@ public class Benchmark {
         return testList;
     }
     
+    /**
+     * Ajoute dans le fitre le moitié de sa taille en éléments
+     * 
+     * @param bf filtre
+     * @return filtre avec des valeurs ajouter
+     */
     private BloomFilter ajoutElementsDansLeFiltre(BloomFilter bf){
         for(int n=0; n<bf.m/2; n++){
             bf.addAObject(n);
@@ -104,13 +136,28 @@ public class Benchmark {
         return bf;
     }
     
+    /**
+     * Ajoute un pourcentage d'éléments dans le filtre
+     * 
+     * @param bf
+     * @param pourcentage pourcentage à mettre
+     * @return filtre avec des valeurs ajoutées
+     */
     private BloomFilter ajoutPourcentageElementsAleatoire(BloomFilter bf, int pourcentage){
-        for(int n=0; n<pourcentage; n++){
+        for(int n=0; n<pourcentage*bf.m/100; n++){
             bf.addAObject(n);
         }
         return bf;
     }
     
+    /**
+     * Retourne le temps que le filtre met à déterminer pour voir 
+     * si ils contients nos éléménts
+     * 
+     * @param bf
+     * @param test
+     * @return int temps en millisecondes
+     */
     private int calculDuTemps(BloomFilter bf, int[] test){
         int nbExecution = test.length;
         long startTime = System.currentTimeMillis();
@@ -121,6 +168,13 @@ public class Benchmark {
         return (int)(endTime-startTime);
     }
 
+    /**
+     * Retourne le nombre d'érreurs faite
+     * 
+     * @param bf filtre
+     * @param test liste d'éléments à tester.
+     * @return int nb erreur
+     */
     private int nbErrorCalcul(BloomFilter bf, int[] test) {
         int nbError = 0;
         for(int i = 0; i<test.length; i++){
@@ -128,7 +182,7 @@ public class Benchmark {
                 nbError++;
             }
         }
-        return nbError/100;
+        return (int)(nbError*100/test.length);
     }
     
 }

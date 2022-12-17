@@ -14,6 +14,12 @@ public abstract class ListGenericFilter extends BloomFilter{
 
     List<Boolean> filterList;
     
+    /**
+     * Constructeur
+     * 
+     * @param k nombre de hash utilisé
+     * @param m taille de notre filtre
+     */
     protected ListGenericFilter(int k, int m, List<Boolean> l) {
         super(k, m);
         this.filterList = l;
@@ -22,6 +28,12 @@ public abstract class ListGenericFilter extends BloomFilter{
         }
     }
 
+    /**
+    * Vérifie si l'élément est possiblement dans le filtre
+    * 
+    * @param o élément à vérifié
+    * @return Boolean vrai si il y est sinon faux
+    */
     @Override
     public Boolean isInFilter(Object o) {
         Boolean b = filterList.get(super.myHash.hash0(o));
@@ -40,6 +52,11 @@ public abstract class ListGenericFilter extends BloomFilter{
         return b;
     }
 
+    /**
+    * Ajoute un élément dans notre filtre
+    * 
+    * @param o élémnet à ajouter
+    */
     @Override
     public void addAObject(Object o) {
         filterList.add(super.myHash.hash0(o), true);

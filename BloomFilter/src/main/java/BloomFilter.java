@@ -9,11 +9,21 @@
  */
 public abstract class BloomFilter{
     
+    // nombre k de hash utilisés
     protected int k;
+    // m taille de notre filtre
     protected int m; 
+    // n nombre elements dans le filtre
     protected int n;
+    // nos hashs
     protected HashMethodes myHash;
     
+    /**
+     * Constructeur
+     * 
+     * @param k nombre de hash utilisé
+     * @param m taille de notre filtre
+     */
     public BloomFilter(int k, int m) {
         if ( k < 1 ){
             k = 1;
@@ -25,8 +35,19 @@ public abstract class BloomFilter{
         this.myHash = new HashMethodes(m);
     }
     
+    /**
+    * Ajoute un élément dans notre filtre
+    * 
+    * @parmam Object élémnet à ajouter
+    */
     public abstract void addAObject(Object o);
     
+    /**
+    * Vérifie si l'élément est possiblement dans le filtre
+    * 
+    * @param o élément à vérifié
+    * @return Boolean vrai si il y est sinon faux
+    */
     public abstract Boolean isInFilter(Object o);
  
 }

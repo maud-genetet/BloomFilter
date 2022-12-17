@@ -12,13 +12,13 @@ import java.util.LinkedList;
  */
 public class LinkedListFilter extends ListGenericFilter{
     
+    /**
+     * Constructeur
+     * 
+     * @param k nombre de hash utilisé
+     * @param m taille de notre filtre
+     */
     public LinkedListFilter(int k, int m) {
         super(k, m, new LinkedList<>());
     }
-
-    @Override
-    public String toString() {
-        return "LinkedList";
-    }
-    
 }

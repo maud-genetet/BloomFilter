@@ -11,6 +11,12 @@ public class TabFilter extends BloomFilter{
 
     Boolean filterTab[];
     
+    /**
+     * Constructeur
+     * 
+     * @param k nombre de hash utilisé
+     * @param m taille de notre filtre
+     */
     public TabFilter(int k, int m) {
         super(k, m);
         this.filterTab = new Boolean[m];
@@ -19,6 +25,12 @@ public class TabFilter extends BloomFilter{
         }
     }
 
+    /**
+    * Vérifie si l'élément est possiblement dans le filtre
+    * 
+    * @param o élément à vérifié
+    * @return Boolean vrai si il y est sinon faux
+    */
     @Override
     public Boolean isInFilter(Object o) {
         Boolean b = this.filterTab[super.myHash.hash0(o)];
@@ -37,6 +49,11 @@ public class TabFilter extends BloomFilter{
         return b;
     }
 
+    /**
+    * Ajoute un élément dans notre filtre
+    * 
+    * @param o élémnet à ajouter
+    */
     @Override
     public void addAObject(Object o) {
         filterTab[super.myHash.hash0(o)] = true;
@@ -53,10 +70,5 @@ public class TabFilter extends BloomFilter{
             }
         }
         super.n ++;
-    }
-    
-    @Override
-    public String toString() {
-        return "List";
     }
 }
