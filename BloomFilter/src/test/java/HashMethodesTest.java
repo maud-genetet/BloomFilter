@@ -22,13 +22,14 @@ public class HashMethodesTest {
     @Test
     public void testHash0() {
         System.out.println("hash0");
-        Object o = null;
-        HashMethodes instance = null;
-        int expResult = 0;
-        int result = instance.hash0(o);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        int i = 1;
+        int i2 = 101;
+        
+        int m = 100;
+        HashMethodes hash = new HashMethodes(m);
+        assertEquals(1, hash.hash0(i));
+        assertEquals(1, hash.hash0(i2));
     }
 
     /**
@@ -37,13 +38,14 @@ public class HashMethodesTest {
     @Test
     public void testHash1() {
         System.out.println("hash1");
-        Object o = null;
-        HashMethodes instance = null;
-        int expResult = 0;
-        int result = instance.hash1(o);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        int i = 1;
+        int i2 = 101;
+        
+        int m = 100;
+        HashMethodes hash = new HashMethodes(m);
+        assertEquals((1+1)*3, hash.hash1(i));
+        assertEquals((1+1)*3, hash.hash1(i2));
     }
 
     /**
@@ -52,13 +54,14 @@ public class HashMethodesTest {
     @Test
     public void testHash2() {
         System.out.println("hash2");
-        Object o = null;
-        HashMethodes instance = null;
-        int expResult = 0;
-        int result = instance.hash2(o);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        int i = 1;
+        int i2 = 101;
+        
+        int m = 100;
+        HashMethodes hash = new HashMethodes(m);
+        assertEquals((1+33)*7%100, hash.hash2(i));
+        assertEquals((1+33)*7%100, hash.hash2(i2));
     }
 
     /**
@@ -67,13 +70,14 @@ public class HashMethodesTest {
     @Test
     public void testHash3() {
         System.out.println("hash3");
-        Object o = null;
-        HashMethodes instance = null;
-        int expResult = 0;
-        int result = instance.hash3(o);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+       
+        int i = 1;
+        int i2 = 101;
+        
+        int m = 100;
+        HashMethodes hash = new HashMethodes(m);
+        assertEquals(44, hash.hash3(i));
+        assertEquals(44, hash.hash3(i2));
     }
 
     /**
@@ -82,13 +86,14 @@ public class HashMethodesTest {
     @Test
     public void testHash4() {
         System.out.println("hash4");
-        Object o = null;
-        HashMethodes instance = null;
-        int expResult = 0;
-        int result = instance.hash4(o);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        int i = 1;
+        int i2 = 101;
+        
+        int m = 100;
+        HashMethodes hash = new HashMethodes(m);
+        assertEquals((1+17)*17%100, hash.hash4(i));
+        assertEquals((1+17)*17%100, hash.hash4(i2));
     }
     
 }

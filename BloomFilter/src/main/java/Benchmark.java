@@ -40,7 +40,7 @@ public class Benchmark {
 
         try
         {
-          fileTemps = new FileWriter("TempsK"+k+"nbExec"+nbExecution+"mMax"+mMax+"intervalle+"+intervalle+"enMillisecondes.csv");
+          fileTemps = new FileWriter("TempsK"+k+"nbExec"+nbExecution+"mMax"+mMax+"intervalle"+intervalle+"enMillisecondes.csv");
           //Ajouter l'en-tête
           fileTemps.append(HEADER);
           
@@ -93,7 +93,7 @@ public class Benchmark {
               String s = ""+i;
               for(int K = 1; K<=5; K++){
                   BloomFilter bf = new ArrayListFilter(K,mTotal);
-                  bf = ajoutPourcentageElementsAleatoire(bf, i);
+                  bf = ajoutPourcentageElements(bf, i);
                   s += DELIMITER+nbErrorCalcul(bf,test);
               }
               fileError.append(s);
@@ -143,7 +143,7 @@ public class Benchmark {
      * @param pourcentage pourcentage à mettre
      * @return filtre avec des valeurs ajoutées
      */
-    private BloomFilter ajoutPourcentageElementsAleatoire(BloomFilter bf, int pourcentage){
+    private BloomFilter ajoutPourcentageElements(BloomFilter bf, int pourcentage){
         for(int n=0; n<pourcentage*bf.m/100; n++){
             bf.addAObject(n);
         }

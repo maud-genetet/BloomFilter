@@ -40,7 +40,7 @@ public class HashMethodes{
     * @return int notre hash
     */
     public int hash1(Object o){
-        return abs(o.hashCode()*3%this.tailleTab);
+        return abs((o.hashCode()+1)*3%this.tailleTab);
     }
     
     /**
@@ -50,7 +50,7 @@ public class HashMethodes{
     * @return int notre hash
     */
     public int hash2(Object o){
-        return abs(o.hashCode()*7%this.tailleTab);
+        return abs((o.hashCode()+33)*7%this.tailleTab);
     }
     
     /**
@@ -60,7 +60,7 @@ public class HashMethodes{
     * @return int notre hash
     */
     public int hash3(Object o){
-        return abs(o.hashCode()*13%this.tailleTab);
+        return abs((o.hashCode()+11*13)%this.tailleTab);
     }
     
     /**
@@ -70,6 +70,6 @@ public class HashMethodes{
     * @return int notre hash
     */
     public int hash4(Object o){
-        return abs(o.hashCode()*17%this.tailleTab);
+        return abs((o.hashCode()+17)*17%this.tailleTab);
     }    
 }
