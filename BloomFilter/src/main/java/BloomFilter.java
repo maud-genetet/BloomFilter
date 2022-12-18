@@ -38,7 +38,7 @@ public abstract class BloomFilter{
     /**
     * Ajoute un élément dans notre filtre
     * 
-    * @parmam Object élémnet à ajouter
+    * @param o élément à ajouter
     */
     public abstract void addAObject(Object o);
     
